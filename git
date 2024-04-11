@@ -1,0 +1,5 @@
+Git installation
+dnf install git -y
+
+Checking the git version
+git --version or git -v
