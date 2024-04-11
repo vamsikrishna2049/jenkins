@@ -1,0 +1,22 @@
+Reference:
+https://docs.aws.amazon.com/neptune/latest/userguide/iam-auth-connect-prerq.html
+
+#This is only after Amazon linux 2023 versions. Refer the above link, on how to install Java
+
+pre requisite
+=============
+Install Java and git
+
+Install Apache Maven on Amazon Linux. 
+==========================================
+1. First, enter the following to add a repository with a Maven package.
+   sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+
+2. Enter the following to set the version number for the packages.
+   sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+
+3. Then you can use yum to install Maven.
+   sudo yum install -y apache-maven
+
+4. Checking the maven version
+   mvn -v
