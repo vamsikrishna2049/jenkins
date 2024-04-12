@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Update software packages
+sudo dnf update -y
+
+# Install Java Corretto 1.8
+sudo yum install -y java-1.8.0-amazon-corretto-devel
+
+# Install Git
+sudo dnf install git -y
+
+# Add Apache Maven repository and install
+sudo wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i 's/\$releasever/6/g' /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+
+# Add Jenkins repository
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+# Import Jenkins-CI key
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+# Upgrade installed packages
+sudo dnf upgrade -y
+
+# Install Jenkins
+sudo dnf install jenkins -y
+
+# Enable Jenkins service to start at boot
+sudo systemctl enable jenkins
+
+# Start Jenkins service
+sudo systemctl start jenkins
+
+# Check Jenkins service status
+sudo systemctl status jenkins
+
+echo "Jenkins installation and setup completed successfully."
