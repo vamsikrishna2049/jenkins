@@ -1,5 +1,11 @@
-Install java ( I'm installing JDK)
-sudo yum install -y java-1.8.0-amazon-corretto-devel
+Install java (Java Development Kit (JDK)-> Java Runtime Environment (JRE) and Java Virtual Machine (JVM))
+1.8V  java-1.8.0-amazon-corretto-devel.x86_64
+11 V  java-11-amazon-corretto-devel.x86_64
+17 V  java-17-amazon-corretto-devel.x86_64
+21 V  java-21-amazon-corretto-devel.x86_64
+
+Ex: If you want to install java 1.8v then 
+    sudo yum install -y java-1.8.0-amazon-corretto-devel
 
 Checking the java version
 java -version
