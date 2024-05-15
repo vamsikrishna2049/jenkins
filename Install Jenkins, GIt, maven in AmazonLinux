@@ -3,8 +3,8 @@
 # Update software packages
 sudo dnf update -y
 
-# Install Java Corretto 1.8
-sudo yum install -y java-1.8.0-amazon-corretto-devel
+# Install Java 
+sudo dnf install java-17-amazon-corretto -y
 
 # Install Git
 sudo dnf install git -y
