@@ -4,8 +4,8 @@ Install java (Java Development Kit (JDK)-> Java Runtime Environment (JRE) and Ja
 17 V  java-17-amazon-corretto-devel.x86_64
 21 V  java-21-amazon-corretto-devel.x86_64
 
-Ex: If you want to install java 1.8v then 
-    sudo yum install -y java-1.8.0-amazon-corretto-devel
+Ex: If you want to install java 17v then 
+    sudo dnf install java-17-amazon-corretto -y
 
 Checking the java version
 java -version
