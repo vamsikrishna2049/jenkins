@@ -34,4 +34,3 @@ sudo apt-get install jenkins -y
 ## STEP 7: Upgrading the Local Repository Packages
 ```xml
 sudo apt upgrade -y
-'''
