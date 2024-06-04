@@ -3,7 +3,7 @@
 For installation refer this https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
 ```
 
-## STEP 2: Installing Java Run time Environment
+## Jenkins Installation at Ubuntu 
 ```xml
 https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 ```
