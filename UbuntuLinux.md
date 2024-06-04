@@ -31,22 +31,22 @@ sudo apt update -y
 sudo apt-get install jenkins -y
 ```
 
-## STEP 7: Upgrading the Local Repository Packages
+## STEP 7: Upgrading the local Repository Packages
 ```xml
 sudo apt upgrade -y
 ```
 
-## STEP 8: 
+## STEP 8: Checking the Jenkins service
 ```xml
 sudo systemctl status jenkins.service
 ```
 
-## STEP 9: 
+## STEP 9: Start the Jenkins service
 ```xml
 sudo systemctl start jenkins.service
 ```
 
-## STEP 10: 
+## STEP 10: Enable the Jenkins service
 ```xml
 sudo systemctl enable jenkins.service
 ```
