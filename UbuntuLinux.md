@@ -34,3 +34,31 @@ sudo apt-get install jenkins -y
 ## STEP 7: Upgrading the Local Repository Packages
 ```xml
 sudo apt upgrade -y
+```
+
+## STEP 8: 
+```xml
+sudo systemctl status jenkins.service
+```
+
+## STEP 9: 
+```xml
+sudo systemctl start jenkins.service
+```
+
+## STEP 10: 
+```xml
+sudo systemctl enable jenkins.service
+```
+
+## STEP 11: check the process
+```xml
+ps -aux | grep jenkins 
+```
+
+## STEP 12: checking the Jenkins is port number
+```xml
+netstat -nltp
+```
+
+## Congragulations Jenkins installation successfully created at Ubuntu Linux
