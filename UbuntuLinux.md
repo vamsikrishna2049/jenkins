@@ -51,14 +51,26 @@ sudo systemctl start jenkins.service
 sudo systemctl enable jenkins.service
 ```
 
-## STEP 11: check the process
+## STEP 11: To display a snapshot of currently running Jenkins processes 
 ```xml
 ps -aux | grep jenkins 
 ```
 
-## STEP 12: checking the Jenkins is port number
+## STEP 12: Package for networking tasks on Unix-like operating systems. It allow users to monitor and troubleshoot network connections, interfaces, and routing tables
+```xml
+sudo apt install net-tools
+```
+
+## STEP 13: To display information about network connections and listening ports on a Unix-like operating system. 
 ```xml
 netstat -nltp
 ```
+
+netstat
+displaying network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+- n  netstat not to resolve IP addresses to hostnames, showing numerical addresses instead.
+- l  display listening server sockets
+- t  only TCP sockets should be displayed
+- p  adds the process identifier (PID) and the name of the program associated with each socket
 
 ## Congragulations Jenkins installation successfully created at Ubuntu Linux
