@@ -52,6 +52,32 @@
         <!-- Add other dependencies as needed -->
     </dependencies>
 
+    <distributionManagement>
+    <!-- Repository for release versions -->
+    <repository>
+        <id>release-repo</id>
+        <name>Release Repository</name>
+        <url>https://repo.example.com/releases</url>
+        <uniqueVersion>false</uniqueVersion> <!-- Set to false for release versions -->
+    </repository>
+
+    <!-- Repository for snapshot versions -->
+    <snapshotRepository>
+        <id>snapshot-repo</id>
+        <name>Snapshot Repository</name>
+        <url>https://repo.example.com/snapshots</url>
+        <uniqueVersion>true</uniqueVersion> <!-- Set to true for snapshot versions -->
+    </snapshotRepository>
+
+    <!-- Site repository for documentation (optional) -->
+    <site>
+        <id>site-repo</id>
+        <name>Project Site</name>
+        <url>https://www.example.com/project-site</url>
+    </site>
+</distributionManagement>
+
+
     <build>
         <plugins>
             <!-- Maven Compiler Plugin (sets source and target Java version) -->
