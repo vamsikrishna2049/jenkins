@@ -7,3 +7,6 @@ For installation refer this https://www.jenkins.io/doc/tutorials/tutorial-for-in
 ```xml
 https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 ```
+
+### Note:
+Access your Jenkins web Platform via https://<Public-IPAddress>:8080
