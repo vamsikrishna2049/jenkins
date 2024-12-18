@@ -1,0 +1,136 @@
+pipeline {
+    agent any
+    
+    environment {
+        GIT_REPO = 'https://github.com/your-repo.git' // Git repo URL
+        BRANCH = 'main' // Git branch
+        MAVEN_HOME = '/opt/maven' // Maven installation path (if Jenkins doesn't detect it automatically)
+        NEXUS_REPO_URL = 'https://nexus.example.com/repository/maven-releases/' // Nexus repository URL
+        NEXUS_REPO_CREDENTIALS = 'nexus-credentials-id' // Jenkins credentials ID for Nexus authentication
+        ARTIFACT_ID = 'your-artifact-id' // Maven artifact ID
+        VERSION = '1.0.0' // Version for the artifact
+        RECIPIENTS = 'youremail@example.com' // Email recipients
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // Clone the Git repository
+                    git branch: "${env.BRANCH}", url: "${env.GIT_REPO}"
+                }
+            }
+        }
+
+        stage('Build with Maven') {
+            steps {
+                script {
+                    // Run Maven to build the project
+                    echo 'Building the project using Maven...'
+                    sh "${MAVEN_HOME}/bin/mvn clean install -DskipTests"
+                }
+            }
+        }
+
+        stage('Upload to Nexus') {
+            steps {
+                script {
+                    // Find the artifact JAR file (assuming it is in the 'target' folder)
+                    def artifactFile = 'target/' + ARTIFACT_ID + '-' + VERSION + '.jar'
+                    echo "Uploading artifact to Nexus: ${artifactFile}"
+
+                    // Upload the artifact to Nexus
+                    nexusArtifactUploader(
+                        nexusUrl: "${env.NEXUS_REPO_URL}",
+                        credentialsId: "${env.NEXUS_REPO_CREDENTIALS}",
+                        groupId: 'com.example',
+                        artifactId: "${env.ARTIFACT_ID}",
+                        version: "${env.VERSION}",
+                        repository: 'maven-releases',
+                        file: artifactFile
+                    )
+                }
+            }
+        }
+
+        stage('Dev') {
+            steps {
+                script {
+                    // Simulate the Dev deployment or any tasks for Dev
+                    echo 'Deploying to Development Environment...'
+                    // Add your deployment commands here
+                }
+            }
+        }
+
+        stage('UAT Approval') {
+            steps {
+                script {
+                    // Ask for user approval to deploy to UAT
+                    def userInput = input(
+                        id: 'approveDeployment', message: 'Approve deployment to UAT?', parameters: [
+                            choice(name: 'Approval', choices: ['Approve', 'Skip'], description: 'Approve or skip the deployment to UAT')
+                        ]
+                    )
+                    
+                    if (userInput == 'Approve') {
+                        echo 'Deployment approved for UAT.'
+                    } else {
+                        echo 'Deployment skipped.'
+                    }
+                }
+            }
+            options {
+                // Wait for user approval for 30 minutes
+                timeout(time: 30, unit: 'MINUTES') {
+                    input 'Approve deployment to UAT?'
+                }
+            }
+        }
+
+        stage('Deploy to UAT') {
+            when {
+                expression {
+                    // Proceed with deployment regardless of approval after the 30-minute wait
+                    def timeoutExpired = currentBuild.rawBuild.getAction(hudson.model.ParametersAction).getParameters().find{it.name == 'Approval'}?.value == null
+                    return timeoutExpired || (input == 'Approve')
+                }
+            }
+            steps {
+                script {
+                    echo 'Deploying to UAT...'
+                    // Add your deployment commands here
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            // Send email notification on success
+            emailext(
+                subject: "Jenkins Pipeline Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The pipeline completed successfully.\n\nJob: ${env.JOB_NAME}\nBuild: ${env.BUILD_NUMBER}\nURL: ${env.BUILD_URL}",
+                to: "${env.RECIPIENTS}"
+            )
+            echo 'Deployment completed successfully.'
+        }
+        failure {
+            // Send email notification on failure
+            emailext(
+                subject: "Jenkins Pipeline Failure: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The pipeline failed.\n\nJob: ${env.JOB_NAME}\nBuild: ${env.BUILD_NUMBER}\nURL: ${env.BUILD_URL}",
+                to: "${env.RECIPIENTS}"
+            )
+            echo 'There was an issue with the deployment.'
+        }
+        unstable {
+            // Send email notification on unstable state
+            emailext(
+                subject: "Jenkins Pipeline Unstable: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The pipeline is unstable.\n\nJob: ${env.JOB_NAME}\nBuild: ${env.BUILD_NUMBER}\nURL: ${env.BUILD_URL}",
+                to: "${env.RECIPIENTS}"
+            )
+        }
+    }
+}
