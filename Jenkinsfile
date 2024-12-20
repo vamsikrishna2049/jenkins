@@ -1,9 +1,9 @@
 pipeline {
   agent any
 
-  parameters {
+ /*   parameters {
     choice(name: 'select_env', choices: ['dev', 'staging', 'prod'], description: 'Choose the environment for deployment')
-  }
+  }*/
 
   tools {
     maven 'maven-3.9.7'  // Make sure Maven is correctly defined for your agent
