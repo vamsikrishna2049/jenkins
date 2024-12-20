@@ -1,8 +1,8 @@
 pipeline {
     agent any
 
-        environment {
-        ARTIFACT_NAME = 'my-artifact'  // Declare in environment block
+    environment {
+        ARTIFACT_NAME = 'my-artifact.war'  // Ensure artifact name matches the expected output
     }
     
     tools {
@@ -29,7 +29,7 @@ pipeline {
                     // Validate that the artifact was created
                     def artifactExists = fileExists("target/${ARTIFACT_NAME}")
                     if (!artifactExists) {
-                        error "Build artifact not found!"
+                        error "Build artifact not found: ${ARTIFACT_NAME}!"
                     }
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running SonarQube analysis...'
-                    // Use the 'mvn' directly, as the 'maven' tool is already configured in the 'tools' block
+                    // Run Sonar analysis
                     sh 'mvn sonar:sonar -Dsonar.projectKey=my_project_key -Dsonar.host.url=http://your-sonar-url'
                 }
             }
