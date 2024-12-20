@@ -1,6 +1,5 @@
 This script provides a simple structure for a CI pipeline that builds a Maven project, handles environment variables, prints logs, and archives artifacts after a successful build.
 
-```groovy
 ### 1. **Pipeline Definition**
 ```groovy
 pipeline {
@@ -86,5 +85,3 @@ This section defines the stages of the pipeline. Each stage is a distinct phase 
     - The `mvn clean package` command builds the project.
     - A message is printed with the `NAME` and the `LastName` parameter (which is expected to be provided to the pipeline).
 5. **Post Actions**: If the build is successful, the resulting WAR files in the `target/` directory are archived.
-
-```
