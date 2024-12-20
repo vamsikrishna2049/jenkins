@@ -131,4 +131,4 @@ Include a list of frequently asked questions to help users troubleshoot or learn
 
 In Summary **ThinBackupPlugin,** provides a simple yet powerful solution for Jenkins backup and restoration. 
 By integrating backup functionality directly into Jenkins, it helps ensure the safety and recoverability of your Jenkins configurations. 
-Feel free to reach out for support or contribute to the project on [GitHub](https://github.com/jenkinsci/thinbackup-plugin).
+[GitHub](https://github.com/jenkinsci/thinbackup-plugin).
