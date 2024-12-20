@@ -1,14 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        ARTIFACT_NAME = "webapp-1.0.war"        // Replace with your actual artifact name
-        DEV_SERVER_IP = "52.71.155.134"        // Replace with your DevServer's IP
-        DEV_SERVER_USER = "ubuntu"             // Replace with your username for DevServer
-        DEV_SERVER_PATH = "/var/www/html"      // The directory where the artifact should be copied
-        SSH_KEY_ID = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDV21RRFBZdbZw8pfknOXlcfQnl+H3+1jKc0RM7l3FJuVVU3zFcZMXDQA8xeZmzvGzjfHwkG758+BFcNM1s5nxw2UWV7MDQTQIkVCs5gPTog16gDpNl/L/sqEQMG/vbJqDNo7RWjMGstih1Ow/mxYe+e3UaxpOII/9YmBXUY4N2kcqg0iBOPxS0q9lWbcbkBG+Ja6vnTNEeDEuZp9bfhYiL+Jif/Jc0Yq5kVBFhp6aP9963frm0Rn3L1RZ+TNhapL6xJMrJgR5zwopnc8/1sl3Mnsc0QyEtsR3NriosJQDJl3kSUREGI7J24Rz29/OdE3bZUMg88Yr6CJoAqwB33Asf keypair"
-    }
-
     tools {
         maven 'maven-3.9.7'  // Ensure you have Maven configured on Jenkins
     }
