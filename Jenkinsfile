@@ -6,7 +6,7 @@ pipeline {
   }
 
   tools {
-    maven 'maven-3.9.7'
+    maven 'maven-3.9.7'  // Make sure Maven is correctly defined for your agent
   }
 
   stages {
@@ -22,18 +22,24 @@ pipeline {
         sh 'mvn clean package'
       }
     }
+
+    stage('Sonar Analysis') {
+      steps {
+        script {
+          // Ensure SonarQube environment variables are set (you may need to configure SonarQube server details in Jenkins)
+          sh 'mvn sonar:sonar'
+        }
+      }
+    }
   }
 
-  stage('sonar analysis') {
-    sh "$mavenHome/bin/mvn sonar:sonar"
-  }
   post {
     success {
       script {
         // Send Slack success notification
         slackSend(
-          channel: '#all-devops-practise', // Replace with your Slack channel
-          color: 'good', // Green color for success
+          channel: '#all-devops-practise',  // Replace with your Slack channel
+          color: 'good',                    // Green color for success
           message: "Build Successful: ${env.JOB_NAME} (${env.BUILD_NUMBER}) - Deployed to ${params.select_env}."
         )
       }
@@ -43,8 +49,8 @@ pipeline {
       script {
         // Send Slack failure notification
         slackSend(
-          channel: '#all-devops-practise', // Replace with your Slack channel
-          color: 'danger', // Red color for failure
+          channel: '#all-devops-practise',  // Replace with your Slack channel
+          color: 'danger',                  // Red color for failure
           message: "Build Failed: ${env.JOB_NAME} (${env.BUILD_NUMBER}) - Please check the build logs."
         )
       }
@@ -54,8 +60,8 @@ pipeline {
       script {
         // Send Slack unstable notification
         slackSend(
-          channel: '#all-devops-practise', // Replace with your Slack channel
-          color: 'warning', // Yellow color for unstable builds
+          channel: '#all-devops-practise',  // Replace with your Slack channel
+          color: 'warning',                 // Yellow color for unstable builds
           message: "Build Unstable: ${env.JOB_NAME} (${env.BUILD_NUMBER}) - Something went wrong."
         )
       }
