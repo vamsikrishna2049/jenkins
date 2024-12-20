@@ -46,6 +46,7 @@ post {
 ---
 
 # Example:
+```groovy
 // Post-actions to be executed after the stage completes
 post {
     // If the 'Build' stage is successful, this block is executed
@@ -54,3 +55,4 @@ post {
         archiveArtifacts artifacts: 'target/*.war', allowEmptyArchive: true  // Archives any WAR files found in the target/ directory
     }
 }
+```
