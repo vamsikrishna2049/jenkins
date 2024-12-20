@@ -82,6 +82,8 @@
         <sonar.projectName>Web App</sonar.projectName>
         <sonar.projectVersion>1.0</sonar.projectVersion>
         <sonar.host.url>http://34.205.53.205:9000</sonar.host.url>                                                                <!-- Corrected the URL -->
+        <sonar.login>admin</sonar.login>
+        <sonar.password>Welcome@987</sonar.password>
     </properties>
 
     <build>
