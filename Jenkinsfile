@@ -27,8 +27,8 @@ pipeline {
                 // Execute the Maven command to clean and package the project
                 sh 'mvn clean package'  // Run Maven clean and package commands to build the WAR file
 
-                // Print a message with the environment variable 'NAME'
-                sh "echo started by $NAME ${parms.LastName}"   // This will print 'started by vamsi'
+                // Print a message with the environment variable 'NAME' and the parameter 'LastName'
+                sh "echo started by $NAME ${params.LastName}"   // Corrected 'params' instead of 'parms'
             }
 
             // Post-actions to be executed after the stage completes
