@@ -7,9 +7,7 @@ pipeline {
   // Parameters: Define parameters that can be provided when triggering the build
   parameters {
     // Define a string parameter 'LastName' with a default value 'Krishna'
-    string defaultValue: 'Krishna', name: 'LastName' 
       choice choices: ['dev', 'prod'], name: 'select_env'
-
   }
 
   // Environment: Set environment variables that will be available throughout the pipeline
@@ -32,9 +30,6 @@ pipeline {
       steps {
         // Run Maven clean and package commands to build the WAR file
         sh 'mvn clean package'
-
-        // Print a message with the environment variable 'NAME'
-        sh 'echo "started by $NAME"' // This will print 'started by vamsi'
       }
 
       // Post-actions to be executed after the stage completes
