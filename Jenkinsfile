@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'devserver' }
+    agent any
 
     environment {
         ARTIFACT_NAME = "webapp-1.0.war"        // Replace with your actual artifact name
