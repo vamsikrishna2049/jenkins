@@ -3,6 +3,10 @@ pipeline {
     label 'DevServer'
   }
 
+  tools {
+    maven 'maven-3.9.7'
+  }
+
   stages {
     stage('Build') {
       steps {
@@ -11,8 +15,9 @@ pipeline {
     }
     post {
       success {
-        archiveArtifacts artifacts: 'target/*.war'
+        archiveArtifacts artifacts: 'target/*.jar'
       }
     }
+
   }
 }
