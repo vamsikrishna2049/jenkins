@@ -45,7 +45,7 @@ post {
 
 ---
 
-***Example:
+# Example:
 // Post-actions to be executed after the stage completes
 post {
     // If the 'Build' stage is successful, this block is executed
