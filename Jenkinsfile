@@ -8,6 +8,8 @@ pipeline {
   parameters {
     // Define a string parameter 'LastName' with a default value 'Krishna'
     string defaultValue: 'Krishna', name: 'LastName' 
+      choice choices: ['dev', 'prod'], name: 'select_env'
+
   }
 
   // Environment: Set environment variables that will be available throughout the pipeline
