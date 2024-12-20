@@ -53,30 +53,38 @@
     </dependencies>
 
     <distributionManagement>
-    <!-- Repository for release versions -->
-    <repository>
-        <id>release-repo</id>
-        <name>Release Repository</name>
-        <url>https://repo.example.com/releases</url>
-        <uniqueVersion>false</uniqueVersion> <!-- Set to false for release versions -->
-    </repository>
+        <!-- Repository for release versions -->
+        <repository>
+            <id>release-repo</id>
+            <name>Release Repository</name>
+            <url>https://repo.example.com/releases</url>
+            <uniqueVersion>false</uniqueVersion> <!-- Set to false for release versions -->
+        </repository>
 
-    <!-- Repository for snapshot versions -->
-    <snapshotRepository>
-        <id>snapshot-repo</id>
-        <name>Snapshot Repository</name>
-        <url>https://repo.example.com/snapshots</url>
-        <uniqueVersion>true</uniqueVersion> <!-- Set to true for snapshot versions -->
-    </snapshotRepository>
+        <!-- Repository for snapshot versions -->
+        <snapshotRepository>
+            <id>snapshot-repo</id>
+            <name>Snapshot Repository</name>
+            <url>https://repo.example.com/snapshots</url>
+            <uniqueVersion>true</uniqueVersion>                                                                                 <!-- Set to true for snapshot versions -->
+        </snapshotRepository>
 
-    <!-- Site repository for documentation (optional) -->
-    <site>
-        <id>site-repo</id>
-        <name>Project Site</name>
-        <url>https://www.example.com/project-site</url>
-    </site>
-</distributionManagement>
+        <!-- Site repository for documentation (optional) -->
+        <site>
+            <id>site-repo</id>
+            <name>Project Site</name>
+            <url>https://www.example.com/project-site</url>
+        </site>
+    </distributionManagement>
 
+    <properties>
+        <sonar.projectKey>com.example:webapp</sonar.projectKey>
+        <sonar.projectName>Web App</sonar.projectName>
+        <sonar.projectVersion>1.0</sonar.projectVersion>
+        <sonar.host.url>http://34.205.53.205:9000</sonar.host.url>                                                                <!-- Corrected the URL -->
+        <sonar.login>admin</sonar.login>
+        <sonar.password>Welcome@987</sonar.password>
+    </properties>
 
     <build>
         <plugins>
@@ -101,6 +109,13 @@
                 </configuration>
             </plugin>
 
+            <!-- SonarQube Plugin -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
+            </plugin>
+
             <!-- Maven WAR Plugin (required for packaging a WAR file) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -121,4 +136,5 @@
             </activation>
         </profile>
     </profiles>
+
 </project>
