@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+        environment {
+        ARTIFACT_NAME = 'my-artifact'  // Declare in environment block
+    }
+    
     tools {
         maven 'maven-3.9.7'  // Ensure you have Maven configured on Jenkins
     }
